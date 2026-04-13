@@ -1,0 +1,438 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   SpinAI Global Styles
+   Base: Pure white | Primary: Purple → Pink → Orange
+   Google Fonts loaded via index.html
+   ===================================================== */
+
+/* --- Base Reset & Root --- */
+:root {
+  --color-primary: #7c3aed;
+  --color-secondary: #ec4899;
+  --color-accent: #f97316;
+  --color-bg: #ffffff;
+  --glow-purple: rgba(124, 58, 237, 0.4);
+  --glow-pink: rgba(236, 72, 153, 0.3);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #7c3aed, #ec4899);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #6d28d9, #db2777);
+}
+
+/* --- Selection Color --- */
+::selection {
+  background: rgba(124, 58, 237, 0.2);
+  color: #4c1d95;
+}
+
+/* --- Gradient Text Utility --- */
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed, #ec4899, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Glassmorphism Card --- */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+}
+
+/* --- Glow Effects --- */
+.glow-purple {
+  box-shadow: 0 0 20px var(--glow-purple), 0 0 40px rgba(124, 58, 237, 0.2);
+}
+
+.glow-pink {
+  box-shadow: 0 0 20px var(--glow-pink), 0 0 40px rgba(236, 72, 153, 0.15);
+}
+
+.glow-hover:hover {
+  box-shadow:
+    0 0 30px var(--glow-purple),
+    0 0 60px var(--glow-pink),
+    0 0 90px rgba(249, 115, 22, 0.15);
+}
+
+/* --- Gradient Border --- */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #7c3aed, #ec4899, #f97316) border-box;
+  border: 2px solid transparent;
+}
+
+/* --- Button Base --- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 30%, #ec4899 65%, #f97316 100%);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 700;
+  border-radius: 0.875rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  font-family: var(--font-heading);
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Shimmer vector overlay on button */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  transition: background-position 0.6s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-primary:hover:not(:disabled)::before {
+  background-position: 200% 0;
+}
+
+/* Light bloom glow behind button on hover */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    rgba(168, 85, 247, 0.55) 0%,
+    rgba(236, 72, 153, 0.4) 40%,
+    rgba(249, 115, 22, 0.2) 70%,
+    transparent 100%
+  );
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.btn-primary:hover:not(:disabled)::after {
+  opacity: 1;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.3),
+    0 8px 24px rgba(124, 58, 237, 0.45),
+    0 16px 48px rgba(236, 72, 153, 0.3),
+    0 24px 64px rgba(249, 115, 22, 0.15);
+  animation: gradientShiftFast 1.5s ease infinite;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* --- Premium White Button --- */
+.btn-white {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  background-color: #ffffff;
+  color: #4b5563; /* gray-600 */
+  z-index: 1;
+}
+
+/* Base text elements need to be above before layer */
+.btn-white .btn-content {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+/* Dark vector background that fades in on hover */
+.btn-white::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 30%, #be185d 70%, #0f172a 100%);
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  border-radius: inherit;
+  animation: btnGradientShift 3s ease infinite;
+}
+
+.btn-white:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+/* Shimmer vector overlay */
+.btn-white::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(236, 72, 153, 0.4) 50%,   /* Pink vector pop */
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-white:hover:not(:disabled)::after {
+  animation: btnShimmer 2.5s ease-in-out infinite;
+}
+
+.btn-white:hover:not(:disabled) {
+  transform: scale(1.05) translateY(-2px);
+  border-color: transparent !important;
+  box-shadow: 
+    0 4px 16px rgba(76, 29, 149, 0.5),
+    0 8px 24px rgba(190, 24, 93, 0.3);
+}
+
+.btn-white:hover:not(:disabled) .btn-content {
+  color: #ffffff;
+}
+
+.btn-white:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes gradientShiftFast {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Chip / Tag --- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.chip:hover {
+  transform: scale(1.05);
+}
+
+/* --- Loading Skeleton --- */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Modal Overlay --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* --- Keyframes for inline button animations --- */
+@keyframes btnShimmer {
+  0%   { background-position: -200% 0; }
+  60%  { background-position: 200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes btnGradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Animations (supplement Tailwind) --- */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4), 0 0 40px rgba(236, 72, 153, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(124, 58, 237, 0.8), 0 0 100px rgba(236, 72, 153, 0.5);
+  }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* --- Responsive Wheel Canvas --- */
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Toast Notifications --- */
+.toast {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(31, 41, 55, 0.95);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 60;
+  white-space: nowrap;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* --- Focus Visible (Accessibility) --- */
+:focus-visible {
+  outline: 2px solid #7c3aed;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- Responsive Typography --- */
+@media (max-width: 640px) {
+  h1, h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+}
+
+/* --- Print Styles --- */
+@media print {
+  .fixed, header, footer {
+    display: none !important;
+  }
+}
