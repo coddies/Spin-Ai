@@ -5,6 +5,7 @@ import ItemsList from './components/ItemsList';
 import AIPanel from './components/AIPanel';
 import WinnerModal from './components/WinnerModal';
 import LimitModal from './components/LimitModal';
+import InfoModal from './components/InfoModal';
 import AdSlot from './components/AdSlot';
 import { useSpinLimit } from './hooks/useSpinLimit';
 import { fireWinnerConfetti } from './utils/confetti';
@@ -29,6 +30,7 @@ function App() {
   const [winnerIndex, setWinnerIndex] = useState(null);
   const [showWinnerModal, setShowWinnerModal] = useState(false);
   const [limitModal, setLimitModal] = useState(null); // 'spin' | 'ai' | 'interstitial' | null
+  const [infoModalOpen, setInfoModalOpen] = useState(null); // 'about' | 'privacy' | 'contact' | null
   const [history, setHistory] = useState([]);
   const [spinCount, setSpinCount] = useState(0);
 
@@ -280,9 +282,9 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-100 py-8 px-4">
+      <footer className="bg-white border-t border-gray-100 py-8 px-4 mt-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <span className="text-2xl">🎡</span>
               <span className="font-black bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">
@@ -291,34 +293,48 @@ function App() {
             </div>
             <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
               {[
-                { label: 'About', href: '#' },
-                { label: 'Privacy Policy', href: '#' },
-                { label: 'Contact', href: '#' },
-              ].map(({ label, href }) => (
-                <a
+                { label: 'About', type: 'about' },
+                { label: 'Privacy Policy', type: 'privacy' },
+                { label: 'Contact', type: 'contact' },
+              ].map(({ label, type }) => (
+                <button
                   key={label}
-                  href={href}
-                  className="text-sm text-gray-500 hover:text-violet-600 transition-colors font-medium"
+                  onClick={() => setInfoModalOpen(type)}
+                  className="text-sm text-gray-500 hover:text-violet-600 transition-colors font-medium bg-transparent border-none cursor-pointer"
                 >
                   {label}
-                </a>
+                </button>
               ))}
             </nav>
-            <p className="text-sm text-gray-400 flex items-center gap-1.5">
-              Made with <Heart size={14} className="text-pink-500 fill-pink-500" /> and AI
+            <p className="text-sm text-gray-500 font-medium">
+              Made with <Heart size={14} className="inline text-red-500 fill-red-500 mx-0.5" /> by <strong className="text-gray-900">Muhammad Burhan</strong> | © 2024 SpinAI
             </p>
           </div>
-          <div className="mt-4 pt-4 border-t border-gray-100 flex justify-center gap-4">
-            {/* Social icon placeholders */}
-            {['🐦 Twitter', '💼 LinkedIn', '📸 Instagram'].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="text-xs text-gray-400 hover:text-violet-600 transition-colors font-medium"
-              >
-                {s}
-              </a>
-            ))}
+          <div className="mt-4 pt-4 border-t border-gray-100 flex justify-center gap-6">
+            <a
+              href="https://www.linkedin.com/in/muhammad-burhan-73a81b27b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-gray-400 hover:text-blue-600 transition-colors font-medium flex items-center gap-1.5"
+            >
+              💼 LinkedIn
+            </a>
+            <a
+              href="https://github.com/coddies"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-gray-400 hover:text-gray-900 transition-colors font-medium flex items-center gap-1.5"
+            >
+              💻 GitHub
+            </a>
+            <a
+              href="https://yourportfolio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-gray-400 hover:text-violet-600 transition-colors font-medium flex items-center gap-1.5"
+            >
+              🌍 Portfolio
+            </a>
           </div>
         </div>
       </footer>
@@ -383,6 +399,14 @@ function App() {
             claimReward(limitModal);
             setLimitModal(null);
           }}
+        />
+      )}
+
+      {/* Info Pages Modal (About, Privacy, Contact) */}
+      {infoModalOpen && (
+        <InfoModal 
+          type={infoModalOpen} 
+          onClose={() => setInfoModalOpen(null)} 
         />
       )}
     </div>
