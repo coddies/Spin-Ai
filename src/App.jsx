@@ -284,14 +284,18 @@ function App() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-100 py-8 px-4 mt-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 w-full">
+            
+            {/* Left: Brand */}
+            <div className="flex-1 flex justify-start items-center gap-2">
               <span className="text-2xl">🎡</span>
               <span className="font-black bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">
                 SpinAI
               </span>
             </div>
-            <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            
+            {/* Center: Nav Links */}
+            <nav className="flex-1 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
               {[
                 { label: 'About', type: 'about' },
                 { label: 'Privacy Policy', type: 'privacy' },
@@ -300,15 +304,21 @@ function App() {
                 <button
                   key={label}
                   onClick={() => setInfoModalOpen(type)}
-                  className="text-sm text-gray-500 hover:text-violet-600 transition-colors font-medium bg-transparent border-none cursor-pointer"
+                  className="relative text-sm text-gray-500 font-bold hover:text-gray-900 transition-colors bg-transparent border-none cursor-pointer group pb-1"
                 >
                   {label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
                 </button>
               ))}
             </nav>
-            <p className="text-sm text-gray-500 font-medium">
-              Made with <Heart size={14} className="inline text-red-500 fill-red-500 mx-0.5" /> by <strong className="text-gray-900">Muhammad Burhan</strong> | © 2024 SpinAI
-            </p>
+            
+            {/* Right: Signature */}
+            <div className="flex-1 flex justify-end">
+              <p className="text-sm text-gray-500 font-medium whitespace-nowrap">
+                Made with <Heart size={14} className="inline text-red-500 fill-red-500 mx-0.5" /> by <strong className="text-gray-900">Muhammad Burhan</strong> | © 2024
+              </p>
+            </div>
+            
           </div>
           <div className="mt-4 pt-4 border-t border-gray-100 flex justify-center gap-6">
             <a
@@ -328,7 +338,7 @@ function App() {
               💻 GitHub
             </a>
             <a
-              href="https://yourportfolio.com"
+              href="https://muhammad-burhan.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-gray-400 hover:text-violet-600 transition-colors font-medium flex items-center gap-1.5"
