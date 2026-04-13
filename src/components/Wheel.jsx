@@ -238,7 +238,8 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
             className="block rounded-full cursor-pointer"
             onClick={spin}
             style={{ maxWidth: '100%', touchAction: 'manipulation' }}
-            aria-label="Spin the wheel"
+            aria-label="AI powered spinning wheel tool"
+            role="img"
             id="spin-wheel-canvas"
           />
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Header from './components/Header';
 import Wheel from './components/Wheel';
 import ItemsList from './components/ItemsList';
@@ -34,8 +34,17 @@ function App() {
 
   const {
     spinsLeft, aiLeft, canSpin, canUseAI,
-    incrementSpins, incrementAI, SPIN_LIMIT, AI_LIMIT,
+    incrementSpins, incrementAI, claimReward, SPIN_LIMIT, AI_LIMIT,
   } = useSpinLimit();
+
+  // Dynamically update document title for SEO
+  useEffect(() => {
+    if (winner && showWinnerModal) {
+      document.title = `🎉 ${winner} - SpinAI`;
+    } else {
+      document.title = "SpinAI - AI Powered Wheel Spinner | Free Online Tool";
+    }
+  }, [winner, showWinnerModal]);
 
   /**
    * Called by Wheel before spinning – gate by limits.
@@ -135,15 +144,15 @@ function App() {
 
       {/* Hero Section */}
       <div className="text-center py-8 px-4">
-        <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">
-          Let the{' '}
+        <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">
           <span className="bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
-            Wheel Decide
-          </span>
+            AI-Powered
+          </span>{' '}
+          Wheel Spinner
+        </h1>
+        <h2 className="text-gray-500 text-base font-normal">
+          Type any topic — AI fills your wheel instantly
         </h2>
-        <p className="text-gray-500 text-base">
-          Use AI to generate ideas, then spin to pick the winner!
-        </p>
       </div>
 
       {/* Main 3-column layout */}
@@ -370,6 +379,10 @@ function App() {
         <LimitModal
           type={limitModal}
           onClose={() => setLimitModal(null)}
+          onClaimReward={() => {
+            claimReward();
+            setLimitModal(null);
+          }}
         />
       )}
     </div>

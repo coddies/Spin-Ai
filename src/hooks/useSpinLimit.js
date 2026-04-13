@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-const SPIN_LIMIT = 10;
-const AI_LIMIT = 3;
+const SPIN_LIMIT = 20;
+const AI_LIMIT = 5;
 
 const getTodayKey = () => new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
@@ -77,6 +77,20 @@ export const useSpinLimit = () => {
     });
   }, []);
 
+  const claimReward = useCallback(() => {
+    setLimits((prev) => {
+      // Reward gives +10 spins and +3 AI uses (by reducing usage count)
+      const updated = {
+        ...prev,
+        spinsUsed: Math.max(0, prev.spinsUsed - 10),
+        aiUsed: Math.max(0, prev.aiUsed - 3),
+        date: getTodayKey(),
+      };
+      saveLimitsToStorage(updated);
+      return updated;
+    });
+  }, []);
+
   return {
     spinsLeft,
     aiLeft,
@@ -86,6 +100,7 @@ export const useSpinLimit = () => {
     aiUsed: limits.aiUsed,
     incrementSpins,
     incrementAI,
+    claimReward,
     SPIN_LIMIT,
     AI_LIMIT,
   };
