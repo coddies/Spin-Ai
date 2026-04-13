@@ -77,15 +77,15 @@ export const useSpinLimit = () => {
     });
   }, []);
 
-  const claimReward = useCallback(() => {
+  const claimReward = useCallback((type) => {
     setLimits((prev) => {
-      // Reward gives +10 spins and +3 AI uses (by reducing usage count)
-      const updated = {
-        ...prev,
-        spinsUsed: Math.max(0, prev.spinsUsed - 10),
-        aiUsed: Math.max(0, prev.aiUsed - 3),
-        date: getTodayKey(),
-      };
+      // Reward gives +3 spins OR +2 AI uses based on type
+      const updated = { ...prev, date: getTodayKey() };
+      if (type === 'spin') {
+        updated.spinsUsed = Math.max(0, prev.spinsUsed - 3);
+      } else if (type === 'ai') {
+        updated.aiUsed = Math.max(0, prev.aiUsed - 2);
+      }
       saveLimitsToStorage(updated);
       return updated;
     });

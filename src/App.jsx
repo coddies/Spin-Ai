@@ -380,7 +380,7 @@ function App() {
           type={limitModal}
           onClose={() => setLimitModal(null)}
           onClaimReward={() => {
-            claimReward();
+            claimReward(limitModal);
             setLimitModal(null);
           }}
         />

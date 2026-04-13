@@ -31,14 +31,14 @@ const LimitModal = ({ type, onClose, onClaimReward }) => {
       emoji: '🎯',
       title: 'Daily Spin Limit Reached!',
       message:
-        "You've used all 20 spins for today! Watch a quick 10s ad to unlock 10 more spins, or come back tomorrow.",
+        "You've used all 20 spins for today! Watch a quick 10s ad to unlock 3 more spins, or come back tomorrow.",
       gradient: 'from-violet-600 to-purple-700',
     },
     ai: {
       emoji: '✨',
       title: 'Daily AI Limit Reached!',
       message:
-        "You've used all 5 AI generations today! Watch a quick 10s ad to unlock 3 more, or come back tomorrow.",
+        "You've used all 5 AI generations today! Watch a quick 10s ad to unlock 2 more, or come back tomorrow.",
       gradient: 'from-pink-500 to-rose-600',
     },
     interstitial: {
