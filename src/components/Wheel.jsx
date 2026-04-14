@@ -24,10 +24,9 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
   useEffect(() => {
     const updateSize = () => {
       const vw = window.innerWidth;
-      if (vw < 768) setCanvasSize(Math.min(vw - 32, 340));
-      else if (vw < 1024) setCanvasSize(400);
-      else if (vw < 1280) setCanvasSize(450);
-      else setCanvasSize(500);
+      // Fluid calculation: take screen width minus padding, max 500px, min 300px
+      const size = Math.min(vw - 64, 500);
+      setCanvasSize(Math.max(300, size));
     };
     updateSize();
     window.addEventListener('resize', updateSize);
@@ -201,9 +200,9 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-4" id="wheel">
+    <div className="flex flex-col items-center gap-4 w-full max-w-full overflow-hidden" id="wheel">
       {/* Pointer Arrow */}
-      <div className="relative" style={{ width: canvasSize, maxWidth: '100%' }}>
+      <div className="relative mx-auto" style={{ width: canvasSize, maxWidth: '100%' }}>
         {/* Arrow pointing down at top center */}
         <div
           className="absolute left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"

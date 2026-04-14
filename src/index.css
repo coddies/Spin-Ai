@@ -9,17 +9,22 @@
    ===================================================== */
 
 /* --- Base Reset & Root --- */
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-body {
+html, body, #root {
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   background-color: var(--color-bg);
   color: #1f2937;
   font-family: var(--font-body);
-  margin: 0;
-  padding: 0;
 }
 
 :root {

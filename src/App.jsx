@@ -145,21 +145,21 @@ function App() {
       </div>
 
       {/* Hero Section */}
-      <div className="text-center py-6 sm:py-8 px-4 w-full flex flex-col items-center">
-        <h1 className="text-2xl sm:text-4xl font-black text-gray-900 mb-2 w-full max-w-2xl break-words leading-tight">
+      <div className="text-center py-6 sm:py-8 px-4 w-full flex flex-col items-center overflow-x-hidden">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-2 w-full max-w-2xl break-words whitespace-normal leading-tight">
           <span className="bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
             AI-Powered
           </span>{' '}
           Wheel Spinner
         </h1>
-        <h2 className="text-gray-500 text-sm sm:text-base font-normal max-w-xl mx-auto px-2">
+        <h2 className="text-gray-500 text-sm sm:text-base font-normal max-w-xl mx-auto px-2 break-words">
           Type any topic — AI fills your wheel instantly
         </h2>
       </div>
 
       {/* Main 3-column layout */}
-      <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(300px,1fr)_auto_minmax(300px,1fr)] gap-8 items-start justify-center">
+      <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-24 overflow-x-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 sm:gap-8 items-start justify-center">
           {/* Left: AI Panel + Tips */}
           <div className="flex flex-col gap-5 lg:order-1">
             <AIPanel

@@ -10,16 +10,16 @@ const Header = ({ spinsLeft, aiLeft, SPIN_LIMIT, AI_LIMIT }) => {
 
   return (
     <header className="w-full bg-white/80 backdrop-blur-md border-b border-white/40 shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="text-3xl animate-float">🎡</div>
-            <div>
-              <h1 className="text-xl sm:text-2xl font-black bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-tight">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <div className="text-2xl sm:text-3xl animate-float">🎡</div>
+            <div className="min-w-0">
+              <h1 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none sm:leading-tight">
                 SpinAI
               </h1>
-              <p className="text-xs text-gray-500 font-medium hidden sm:block -mt-0.5">
+              <p className="text-[10px] text-gray-500 font-medium hidden sm:block">
                 Spin smarter with AI
               </p>
             </div>
@@ -42,20 +42,20 @@ const Header = ({ spinsLeft, aiLeft, SPIN_LIMIT, AI_LIMIT }) => {
           </div>
 
           {/* Mobile badges + hamburger */}
-          <div className="flex items-center gap-2 md:hidden">
-            <div className="flex items-center gap-1 bg-violet-100 rounded-full px-2.5 py-1">
-              <span className="text-xs font-bold text-violet-700">🎯{spinsLeft}</span>
+          <div className="flex items-center gap-1.5 sm:gap-2 md:hidden">
+            <div className="flex items-center gap-1 bg-violet-100 rounded-full px-2 py-0.5 sm:px-2.5 sm:py-1">
+              <span className="text-[10px] sm:text-xs font-bold text-violet-700">🎯{spinsLeft}</span>
             </div>
-            <div className="flex items-center gap-1 bg-pink-100 rounded-full px-2.5 py-1">
-              <span className="text-xs font-bold text-pink-700">✨{aiLeft}</span>
+            <div className="flex items-center gap-1 bg-pink-100 rounded-full px-2 py-0.5 sm:px-2.5 sm:py-1">
+              <span className="text-[10px] sm:text-xs font-bold text-pink-700">✨{aiLeft}</span>
             </div>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+              className="p-1.5 sm:p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
               aria-label="Toggle menu"
               id="mobile-menu-toggle"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>

@@ -130,11 +130,11 @@ const ItemsList = ({ items, setItems }) => {
       )}
 
       {/* Items as Chips */}
-      <div className="flex flex-wrap gap-2 mb-4 min-h-[80px]">
+      <div className="flex flex-wrap gap-2 mb-4 min-h-[60px] w-full overflow-x-hidden">
         {items.map((item, index) => (
           <div
             key={`${item}-${index}`}
-            className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-sm font-semibold shadow-md hover:scale-105 transition-all duration-200 cursor-default animate-fade-in"
+            className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-xs sm:text-sm font-semibold shadow-md hover:scale-105 transition-all duration-200 cursor-default animate-fade-in"
             style={{ backgroundColor: getSegmentColor(index) }}
           >
             <span className="max-w-[120px] truncate">{item}</span>

@@ -121,13 +121,13 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
         </div>
 
         {/* Example prompts */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4 w-full">
           {examplePrompts.map((ex) => (
             <button
               key={ex}
               onClick={() => setPrompt(ex)}
               disabled={loading}
-              className="text-xs px-2.5 py-1 bg-gray-100 hover:bg-violet-50 text-gray-600 hover:text-violet-700 rounded-full border border-gray-200 hover:border-violet-300 transition-all font-medium"
+              className="text-[10px] sm:text-xs px-2.5 py-1 bg-gray-100 hover:bg-violet-50 text-gray-600 hover:text-violet-700 rounded-full border border-gray-200 hover:border-violet-300 transition-all font-medium whitespace-nowrap"
             >
               {ex}
             </button>
