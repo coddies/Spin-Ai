@@ -26,6 +26,7 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
       const vw = window.innerWidth;
       if (vw < 768) setCanvasSize(Math.min(vw - 32, 340));
       else if (vw < 1024) setCanvasSize(400);
+      else if (vw < 1280) setCanvasSize(450);
       else setCanvasSize(500);
     };
     updateSize();
