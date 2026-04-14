@@ -160,7 +160,7 @@ function App() {
       {/* Main 3-column layout */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-          {/* Left: AI + ItemsList */}
+          {/* Left: AI Panel + Tips */}
           <div className="flex flex-col gap-5 lg:order-1">
             <AIPanel
               onItemsGenerated={handleAIItemsGenerated}
@@ -168,7 +168,27 @@ function App() {
               aiLeft={aiLeft}
               onLimitReached={handleAILimitReached}
             />
-            <ItemsList items={items} setItems={setItems} />
+
+            {/* Tips Card */}
+            <div className="bg-gradient-to-br from-violet-50 to-pink-50 border border-violet-200 rounded-2xl p-5 mt-2">
+              <h3 className="font-bold text-violet-800 mb-3 flex items-center gap-2">
+                💡 Tips
+              </h3>
+              <ul className="flex flex-col gap-2.5">
+                {[
+                  'Add 4-12 items for best results',
+                  'Use AI to generate creative lists',
+                  'Click the wheel or the SPIN button',
+                  'Shuffle for randomness each time',
+                  'Share results with friends!',
+                ].map((tip, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-violet-700">
+                    <ChevronRight size={14} className="mt-0.5 flex-shrink-0 text-pink-500" />
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Center: Wheel */}
@@ -232,36 +252,19 @@ function App() {
             )}
           </div>
 
-          {/* Right: Ad sidebar + tips */}
+          {/* Right: Manual Items, Ad, How It Works */}
           <div className="flex flex-col gap-5 lg:order-3">
-            {/* ADSENSE PLACEMENT - Right Sidebar 300x250 Rectangle */}
-            <div className="flex justify-center">
+            
+            {/* Manual wheel fill */}
+            <ItemsList items={items} setItems={setItems} />
+            
+            {/* ADSENSE PLACEMENT */}
+            <div className="flex justify-center mt-2">
               <AdSlot type="rectangle" />
             </div>
 
-            {/* Tips Card */}
-            <div className="bg-gradient-to-br from-violet-50 to-pink-50 border border-violet-200 rounded-2xl p-5">
-              <h3 className="font-bold text-violet-800 mb-3 flex items-center gap-2">
-                💡 Tips
-              </h3>
-              <ul className="flex flex-col gap-2.5">
-                {[
-                  'Add 4-12 items for best results',
-                  'Use AI to generate creative lists',
-                  'Click the wheel or the SPIN button',
-                  'Shuffle for randomness each time',
-                  'Share results with friends!',
-                ].map((tip, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-violet-700">
-                    <ChevronRight size={14} className="mt-0.5 flex-shrink-0 text-pink-500" />
-                    {tip}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* How it works */}
-            <div className="bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl p-5 shadow-md">
+            <div className="bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl p-5 shadow-md mt-2">
               <h3 className="font-bold text-gray-800 mb-3">🎯 How it works</h3>
               {[
                 { step: '1', text: 'Add your items to the wheel' },
