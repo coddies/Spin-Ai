@@ -193,7 +193,7 @@ function App() {
 
           {/* Center: Wheel */}
           <div className="flex flex-col items-center gap-6 lg:order-2">
-            <div className="bg-white/70 backdrop-blur-md border border-white/60 rounded-3xl p-6 shadow-xl w-full flex flex-col items-center">
+            <div className="w-full flex flex-col items-center">
               <Wheel
                 items={items}
                 onResult={handleResult}
