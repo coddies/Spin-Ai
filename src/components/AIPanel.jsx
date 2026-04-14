@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Sparkles, Loader2, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Loader2, AlertCircle, X } from 'lucide-react';
 import { useGroq } from '../hooks/useGroq';
 
 /**
@@ -10,6 +10,20 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
   const [prompt, setPrompt] = useState('');
   const { generateItems, loading, error, setError } = useGroq();
   const [successMsg, setSuccessMsg] = useState('');
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('spinai_ai_onboarded')) {
+      // Small delay so it pops in beautifully
+      const t = setTimeout(() => setShowTooltip(true), 1500);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  const dismissTooltip = () => {
+    localStorage.setItem('spinai_ai_onboarded', 'true');
+    setShowTooltip(false);
+  };
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
@@ -55,6 +69,23 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
       }}
       id="ai-panel"
     >
+      {/* Onboarding Tooltip Pop-up */}
+      {showTooltip && (
+        <div className="absolute -top-12 sm:-top-14 left-1/2 -translate-x-1/2 z-50 w-max animate-bounce-in">
+          <div className="bg-gray-900 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
+            <span>✨ Generate with AI here!</span>
+            <button 
+              onClick={dismissTooltip}
+              className="w-5 h-5 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition-colors"
+            >
+              <X size={12} />
+            </button>
+          </div>
+          {/* Tooltip triangle arrow down */}
+          <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-gray-900 absolute top-full left-1/2 -translate-x-1/2" />
+        </div>
+      )}
+
       <div className="bg-white/95 backdrop-blur-md rounded-[14px] p-5">
         {/* Header */}
         <div className="flex items-center gap-2.5 mb-4">
