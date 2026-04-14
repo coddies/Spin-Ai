@@ -53,7 +53,7 @@ const LimitModal = ({ type, onClose, onClaimReward }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
       role="dialog"
       aria-modal="true"
     >
@@ -64,7 +64,7 @@ const LimitModal = ({ type, onClose, onClaimReward }) => {
       />
 
       {/* Modal */}
-      <div className="relative z-10 bg-white rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden animate-bounce-in">
+      <div className="relative z-10 bg-white rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden animate-bounce-in mx-auto">
         {/* Gradient header */}
         <div className={`bg-gradient-to-r ${cfg.gradient} px-6 py-6 text-center`}>
           <div className="text-5xl mb-2">{cfg.emoji}</div>

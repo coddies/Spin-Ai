@@ -48,7 +48,7 @@ const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label="Winner announcement"
@@ -60,7 +60,7 @@ const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
       />
 
       {/* Modal Card */}
-      <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center animate-bounce-in">
+      <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-6 sm:p-8 max-w-sm w-full text-center animate-bounce-in overflow-hidden">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -137,7 +137,7 @@ const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
             </button>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col xs:flex-row gap-2">
             {/* Share button - bloom + shimmer */}
             <div className="relative group flex-1">
               <div
