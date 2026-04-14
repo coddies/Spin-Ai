@@ -9,6 +9,19 @@
    ===================================================== */
 
 /* --- Base Reset & Root --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: #1f2937;
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --color-primary: #7c3aed;
   --color-secondary: #ec4899;

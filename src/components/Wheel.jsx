@@ -24,10 +24,9 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
   useEffect(() => {
     const updateSize = () => {
       const vw = window.innerWidth;
-      if (vw < 380) setCanvasSize(300);
-      else if (vw < 640) setCanvasSize(340);
-      else if (vw < 768) setCanvasSize(380);
-      else setCanvasSize(420);
+      if (vw < 768) setCanvasSize(Math.min(vw - 32, 340));
+      else if (vw < 1024) setCanvasSize(400);
+      else setCanvasSize(500);
     };
     updateSize();
     window.addEventListener('resize', updateSize);
@@ -246,7 +245,7 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
       </div>
 
       {/* Spin Button */}
-      <div className="relative group">
+      <div className="relative group w-full max-w-[340px] sm:max-w-none flex justify-center">
         {/* Light bloom behind button */}
         <div
           className={`absolute inset-0 rounded-2xl blur-xl transition-opacity duration-300 pointer-events-none ${
@@ -262,12 +261,12 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
           disabled={isSpinning || items.length < 2}
           id="spin-button"
           className={`
-            relative overflow-hidden px-10 py-3.5 rounded-2xl font-bold text-white text-lg
+            relative overflow-hidden w-full sm:w-auto px-10 py-3.5 rounded-2xl font-bold text-white text-lg sm:text-xl
             shadow-lg transition-all duration-300
             ${
               isSpinning || items.length < 2
                 ? 'opacity-60 cursor-not-allowed scale-95'
-                : 'hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 cursor-pointer'
+                : 'hover:scale-[1.02] sm:hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 cursor-pointer'
             }
           `}
           style={{

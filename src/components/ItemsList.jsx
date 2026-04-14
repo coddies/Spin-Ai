@@ -74,7 +74,7 @@ const ItemsList = ({ items, setItems }) => {
       </div>
 
       {/* Add Item Input */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full mb-4">
         <input
           ref={inputRef}
           type="text"
@@ -87,10 +87,10 @@ const ItemsList = ({ items, setItems }) => {
           placeholder="Type an item..."
           maxLength={30}
           id="add-item-input"
-          className="flex-1 px-3 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 transition-all"
+          className="flex-1 w-full px-3 py-3 sm:py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-violet-400 transition-all"
         />
         {/* Add button with bloom glow */}
-        <div className="relative group">
+        <div className="relative group w-full sm:w-auto">
           <div
             className="absolute inset-0 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
             style={{
@@ -102,12 +102,11 @@ const ItemsList = ({ items, setItems }) => {
             onClick={addItem}
             disabled={items.length >= MAX_ITEMS || !inputValue.trim()}
             id="add-item-btn"
-            className="relative overflow-hidden px-4 py-2.5 text-white rounded-xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 flex items-center gap-1.5 shadow-md hover:scale-105 hover:-translate-y-0.5 active:scale-95"
+            className="relative overflow-hidden w-full sm:w-auto px-4 py-3 sm:py-2.5 text-white rounded-xl font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-1.5 shadow-md active:scale-[0.98]"
             style={{
               background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 30%, #ec4899 70%, #f97316 100%)',
               backgroundSize: '200% 200%',
               animation: 'btnGradientShift 3s ease infinite',
-              boxShadow: '0 4px 14px rgba(124,58,237,0.35), 0 6px 20px rgba(236,72,153,0.2)',
             }}
           >
             {/* shimmer sweep */}
@@ -120,7 +119,7 @@ const ItemsList = ({ items, setItems }) => {
               }}
             />
             <Plus size={16} className="relative z-10" />
-            <span className="relative z-10">Add</span>
+            <span className="relative z-10">Add Item</span>
           </button>
         </div>
       </div>
@@ -152,7 +151,7 @@ const ItemsList = ({ items, setItems }) => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2 w-full">
         {/* Shuffle button with amber–orange–pink bloom */}
         <div className="relative group flex-1">
           <div

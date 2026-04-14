@@ -145,14 +145,14 @@ function App() {
       </div>
 
       {/* Hero Section */}
-      <div className="text-center py-8 px-4">
-        <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">
+      <div className="text-center py-6 sm:py-8 px-4 w-full flex flex-col items-center">
+        <h1 className="text-2xl sm:text-4xl font-black text-gray-900 mb-2 w-full max-w-2xl break-words leading-tight">
           <span className="bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
             AI-Powered
           </span>{' '}
           Wheel Spinner
         </h1>
-        <h2 className="text-gray-500 text-base font-normal">
+        <h2 className="text-gray-500 text-sm sm:text-base font-normal max-w-xl mx-auto px-2">
           Type any topic — AI fills your wheel instantly
         </h2>
       </div>

@@ -20,8 +20,8 @@ const AdSlot = ({ type = 'rectangle', className = '' }) => {
 
   return (
     <div
-      className={`adsense-slot flex items-center justify-center bg-gray-50 border border-dashed border-gray-300 rounded-xl overflow-hidden ${className}`}
-      style={{ minHeight: size.height, maxWidth: size.width, width: '100%' }}
+      className={`adsense-slot mx-auto flex items-center justify-center bg-gray-50 border border-dashed border-gray-300 rounded-xl overflow-hidden max-w-full ${className}`}
+      style={{ minHeight: size.height, width: size.width, maxWidth: '100%' }}
       aria-label="Advertisement"
       id={`ad-slot-${type}`}
     >
