@@ -6,7 +6,7 @@ import { useGroq } from '../hooks/useGroq';
  * AIPanel – Groq-powered item generator with gradient border,
  * loading state, error toasts, and limit tracking.
  */
-const AIPanel = ({ onItemsGenerated }) => {
+const AIPanel = ({ onItemsGenerated, aiLeft, canUseAI, onLimitReached }) => {
   const [prompt, setPrompt] = useState('');
   const { generateItems, loading, error, setError } = useGroq();
   const [successMsg, setSuccessMsg] = useState('');
@@ -27,6 +27,11 @@ const AIPanel = ({ onItemsGenerated }) => {
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
+
+    if (!canUseAI) {
+      if (onLimitReached) onLimitReached();
+      return;
+    }
 
     setSuccessMsg('');
     setError(null);
@@ -90,6 +95,9 @@ const AIPanel = ({ onItemsGenerated }) => {
           <div>
             <h2 className="font-bold text-gray-800 text-base flex items-center gap-1.5">
               AI Item Generator
+              <span className="text-xs bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 px-2 py-0.5 rounded-full border border-violet-200 font-semibold">
+                ✨ {aiLeft} left
+              </span>
             </h2>
             <p className="text-xs text-gray-500 mt-0.5">Let AI fill your wheel instantly</p>
           </div>
@@ -202,7 +210,7 @@ const AIPanel = ({ onItemsGenerated }) => {
 
         {/* Info text */}
         <p className="mt-3 text-xs text-gray-400 text-center">
-          ✨ Powered by advanced AI
+          ✨ AI powered · {aiLeft} uses left today
         </p>
       </div>
     </div>

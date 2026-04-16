@@ -5,7 +5,9 @@ import ItemsList from './components/ItemsList';
 import AIPanel from './components/AIPanel';
 import WinnerModal from './components/WinnerModal';
 import InfoModal from './components/InfoModal';
+import RewardedAdModal from './components/RewardedAdModal';
 import AdSlot from './components/AdSlot';
+import { useAIUsage } from './hooks/useAIUsage';
 import { fireWinnerConfetti } from './utils/confetti';
 import { History, Clock, Copy, Heart, ChevronRight } from 'lucide-react';
 
@@ -30,6 +32,12 @@ function App() {
   const [infoModalOpen, setInfoModalOpen] = useState(null); // 'about' | 'privacy' | 'contact' | null
   const [history, setHistory] = useState([]);
   const [spinCount, setSpinCount] = useState(0);
+  const [showRewardModal, setShowRewardModal] = useState(false);
+
+  const {
+    aiLeft, canUseAI, rewardsRemaining, canClaimReward,
+    incrementAI, claimReward
+  } = useAIUsage();
 
 
   // Dynamically update document title for SEO
@@ -81,9 +89,10 @@ function App() {
    */
   const handleAIItemsGenerated = useCallback(
     (newItems) => {
+      incrementAI();
       setItems(newItems);
     },
-    []
+    [incrementAI]
   );
 
   /**
@@ -133,6 +142,9 @@ function App() {
           <div className="flex flex-col gap-5 lg:order-1">
             <AIPanel
               onItemsGenerated={handleAIItemsGenerated}
+              aiLeft={aiLeft}
+              canUseAI={canUseAI}
+              onLimitReached={() => setShowRewardModal(true)}
             />
 
             {/* Tips Card */}
@@ -368,6 +380,15 @@ function App() {
         <InfoModal 
           type={infoModalOpen} 
           onClose={() => setInfoModalOpen(null)} 
+        />
+      )}
+
+      {/* Rewarded Ad Modal */}
+      {showRewardModal && (
+        <RewardedAdModal
+          onClose={() => setShowRewardModal(false)}
+          onRewardClaimed={claimReward}
+          rewardsRemaining={rewardsRemaining}
         />
       )}
     </div>
