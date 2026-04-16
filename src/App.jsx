@@ -47,7 +47,7 @@ function App() {
   }, []);
 
   const {
-    aiLeft, canUseAI, rewardsRemaining, canClaimReward,
+    aiLeft, aiUsed, canUseAI, rewardsRemaining, canClaimReward,
     incrementAI, claimReward
   } = useAIUsage();
 
@@ -121,7 +121,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-pink-50 font-poppins">
       {/* Header */}
-      <Header />
+      <Header aiUsed={aiUsed} aiLeft={aiLeft} />
 
       {/* Top Ad Banner */}
       <div className="w-full bg-white border-b border-gray-100 py-2 flex justify-center px-4">

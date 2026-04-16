@@ -5,7 +5,7 @@ import { useState } from 'react';
 /**
  * Header component with logo, tagline, and daily limit badges
  */
-const Header = ({ spinsLeft, aiLeft, SPIN_LIMIT, AI_LIMIT }) => {
+const Header = ({ aiUsed, aiLeft }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -25,14 +25,28 @@ const Header = ({ spinsLeft, aiLeft, SPIN_LIMIT, AI_LIMIT }) => {
             </div>
           </div>
 
-          {/* Limit Badges - Desktop - REMOVED for unlimited use */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* Badges removed */}
+          {/* AI Usage Badges - Desktop */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] uppercase tracking-wider font-bold text-gray-400">Total AI Used</span>
+              <span className="text-sm font-black text-gray-800">{aiUsed}</span>
+            </div>
+            <div className="h-8 w-[1px] bg-gray-100"></div>
+            <div className="flex flex-col items-start translate-y-[-1px]">
+              <span className="text-[10px] uppercase tracking-wider font-bold text-violet-500">AI Uses Left</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></div>
+                <span className="text-sm font-black text-violet-600">{aiLeft}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Mobile hamburger */}
-          <div className="flex items-center gap-1.5 sm:gap-2 md:hidden">
-            {/* Badges removed */}
+          {/* Mobile UI */}
+          <div className="flex md:hidden items-center gap-3">
+             <div className="flex items-center gap-1.5 bg-violet-50 px-2.5 py-1 rounded-full border border-violet-100">
+                <Zap size={12} className="text-violet-500 fill-violet-500" />
+                <span className="text-xs font-black text-violet-700">{aiLeft}</span>
+             </div>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-1.5 sm:p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"

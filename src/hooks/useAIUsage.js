@@ -76,6 +76,7 @@ export const useAIUsage = () => {
 
   return {
     aiLeft,
+    aiUsed: usageData.aiUsed,
     canUseAI,
     rewardsRemaining,
     canClaimReward,
