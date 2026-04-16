@@ -6,7 +6,7 @@ import { useGroq } from '../hooks/useGroq';
  * AIPanel – Groq-powered item generator with gradient border,
  * loading state, error toasts, and limit tracking.
  */
-const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
+const AIPanel = ({ onItemsGenerated }) => {
   const [prompt, setPrompt] = useState('');
   const { generateItems, loading, error, setError } = useGroq();
   const [successMsg, setSuccessMsg] = useState('');
@@ -27,11 +27,6 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
-
-    if (!canUseAI) {
-      onLimitReached('ai');
-      return;
-    }
 
     setSuccessMsg('');
     setError(null);
@@ -95,9 +90,6 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
           <div>
             <h2 className="font-bold text-gray-800 text-base flex items-center gap-1.5">
               AI Item Generator
-              <span className="text-xs bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 px-2 py-0.5 rounded-full border border-violet-200 font-semibold">
-                ✨ {aiLeft} left
-              </span>
             </h2>
             <p className="text-xs text-gray-500 mt-0.5">Let AI fill your wheel instantly</p>
           </div>
@@ -139,7 +131,7 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
           {/* Light bloom behind */}
           <div
             className={`absolute inset-0 rounded-xl blur-xl transition-opacity duration-300 pointer-events-none ${
-              loading || !prompt.trim() || !canUseAI ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
+              loading || !prompt.trim() ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
             }`}
             style={{
               background: 'radial-gradient(ellipse at 50% 120%, rgba(168,85,247,0.7) 0%, rgba(236,72,153,0.5) 40%, rgba(249,115,22,0.25) 70%, transparent 100%)',
@@ -148,13 +140,13 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
           />
           <button
             onClick={handleGenerate}
-            disabled={loading || !prompt.trim() || !canUseAI}
+            disabled={loading || !prompt.trim()}
             id="ai-generate-btn"
             className={`
               relative overflow-hidden w-full py-3 px-6 rounded-xl font-bold text-white text-sm
               shadow-md transition-all duration-300
               ${
-                loading || !prompt.trim() || !canUseAI
+                loading || !prompt.trim()
                   ? 'opacity-60 cursor-not-allowed'
                   : 'hover:scale-[1.03] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0'
               }
@@ -163,13 +155,13 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
               background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 25%, #ec4899 60%, #f97316 100%)',
               backgroundSize: '200% 200%',
               animation: loading ? 'none' : 'btnGradientShift 3s ease infinite',
-              boxShadow: loading || !prompt.trim() || !canUseAI
+              boxShadow: loading || !prompt.trim()
                 ? 'none'
                 : '0 4px 16px rgba(124,58,237,0.4), 0 8px 28px rgba(236,72,153,0.2)',
             }}
           >
             {/* Shimmer sweep */}
-            {!(loading || !prompt.trim() || !canUseAI) && (
+            {!(loading || !prompt.trim()) && (
               <span
                 className="absolute inset-0 pointer-events-none rounded-xl"
                 style={{
@@ -208,16 +200,9 @@ const AIPanel = ({ onItemsGenerated, canUseAI, aiLeft, onLimitReached }) => {
           </div>
         )}
 
-        {/* Limit warning */}
-        {!canUseAI && (
-          <div className="mt-3 text-sm text-amber-600 font-semibold bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 text-center">
-            🚫 Daily AI limit reached. Come back tomorrow!
-          </div>
-        )}
-
-        {/* Info text - model name hidden from user */}
+        {/* Info text */}
         <p className="mt-3 text-xs text-gray-400 text-center">
-          ✨ AI powered · {aiLeft}/3 uses today
+          ✨ Powered by advanced AI
         </p>
       </div>
     </div>

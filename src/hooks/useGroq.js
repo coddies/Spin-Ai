@@ -80,7 +80,7 @@ export const useGroq = () => {
 
     if (!apiKey || apiKey === 'your_groq_api_key_here') {
       setLoading(false);
-      setError('API key not configured. Add your Groq key to the .env file.');
+      setError('API key not configured. Ensure VITE_GROQ_API_KEY is set in your environment variables.');
       return null;
     }
 

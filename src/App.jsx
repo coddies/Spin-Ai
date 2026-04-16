@@ -4,10 +4,8 @@ import Wheel from './components/Wheel';
 import ItemsList from './components/ItemsList';
 import AIPanel from './components/AIPanel';
 import WinnerModal from './components/WinnerModal';
-import LimitModal from './components/LimitModal';
 import InfoModal from './components/InfoModal';
 import AdSlot from './components/AdSlot';
-import { useSpinLimit } from './hooks/useSpinLimit';
 import { fireWinnerConfetti } from './utils/confetti';
 import { History, Clock, Copy, Heart, ChevronRight } from 'lucide-react';
 
@@ -29,15 +27,10 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [winnerIndex, setWinnerIndex] = useState(null);
   const [showWinnerModal, setShowWinnerModal] = useState(false);
-  const [limitModal, setLimitModal] = useState(null); // 'spin' | 'ai' | 'interstitial' | null
   const [infoModalOpen, setInfoModalOpen] = useState(null); // 'about' | 'privacy' | 'contact' | null
   const [history, setHistory] = useState([]);
   const [spinCount, setSpinCount] = useState(0);
 
-  const {
-    spinsLeft, aiLeft, canSpin, canUseAI,
-    incrementSpins, incrementAI, claimReward, SPIN_LIMIT, AI_LIMIT,
-  } = useSpinLimit();
 
   // Dynamically update document title for SEO
   useEffect(() => {
@@ -53,14 +46,9 @@ function App() {
    * Returns true if spin is allowed, false otherwise.
    */
   const handleSpinStart = useCallback(() => {
-    if (!canSpin) {
-      setLimitModal('spin');
-      return false;
-    }
-    incrementSpins();
     setSpinCount((c) => c + 1);
     return true;
-  }, [canSpin, incrementSpins]);
+  }, []);
 
   /**
    * Called by Wheel when spin animation ends and winner determined
@@ -75,17 +63,6 @@ function App() {
       // Add to history
       const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       setHistory((prev) => [{ name: winnerName, time: timestamp, color: idx }, ...prev].slice(0, 5));
-
-      // Show interstitial ad every 3rd spin
-      setSpinCount((c) => {
-        if (c > 0 && c % 3 === 0) {
-          setTimeout(() => {
-            setShowWinnerModal(false);
-            setLimitModal('interstitial');
-          }, 4500);
-        }
-        return c;
-      });
     },
     []
   );
@@ -104,13 +81,10 @@ function App() {
    */
   const handleAIItemsGenerated = useCallback(
     (newItems) => {
-      incrementAI();
       setItems(newItems);
     },
-    [incrementAI]
+    []
   );
-
-  const handleAILimitReached = () => setLimitModal('ai');
 
   /**
    * Copy history item to clipboard
@@ -126,12 +100,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-pink-50 font-poppins">
       {/* Header */}
-      <Header
-        spinsLeft={spinsLeft}
-        aiLeft={aiLeft}
-        SPIN_LIMIT={SPIN_LIMIT}
-        AI_LIMIT={AI_LIMIT}
-      />
+      <Header />
 
       {/* Top Ad Banner */}
       <div className="w-full bg-white border-b border-gray-100 py-2 flex justify-center px-4">
@@ -164,9 +133,6 @@ function App() {
           <div className="flex flex-col gap-5 lg:order-1">
             <AIPanel
               onItemsGenerated={handleAIItemsGenerated}
-              canUseAI={canUseAI}
-              aiLeft={aiLeft}
-              onLimitReached={handleAILimitReached}
             />
 
             {/* Tips Card */}
@@ -203,12 +169,6 @@ function App() {
               />
             </div>
 
-            {/* Spin limit info */}
-            <div className="flex items-center gap-3 text-sm text-gray-500 font-medium">
-              <span>🎯 {spinsLeft} spin{spinsLeft !== 1 ? 's' : ''} remaining today</span>
-              <span className="text-gray-300">|</span>
-              <span>✨ {aiLeft} AI use{aiLeft !== 1 ? 's' : ''} left</span>
-            </div>
 
             {/* History */}
             {history.length > 0 && (
@@ -400,18 +360,6 @@ function App() {
             setWinner(null);
           }}
           onSpinAgain={handleSpinAgain}
-        />
-      )}
-
-      {/* Limit / Interstitial Modal */}
-      {limitModal && (
-        <LimitModal
-          type={limitModal}
-          onClose={() => setLimitModal(null)}
-          onClaimReward={() => {
-            claimReward(limitModal);
-            setLimitModal(null);
-          }}
         />
       )}
 

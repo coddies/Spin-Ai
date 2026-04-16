@@ -25,30 +25,14 @@ const Header = ({ spinsLeft, aiLeft, SPIN_LIMIT, AI_LIMIT }) => {
             </div>
           </div>
 
-          {/* Limit Badges - Desktop */}
+          {/* Limit Badges - Desktop - REMOVED for unlimited use */}
           <div className="hidden md:flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200 rounded-full px-4 py-1.5">
-              <Target size={14} className="text-violet-600" />
-              <span className="text-sm font-semibold text-violet-700">
-                🎯 {spinsLeft} spin{spinsLeft !== 1 ? 's' : ''} left
-              </span>
-            </div>
-            <div className="flex items-center gap-2 bg-gradient-to-r from-pink-50 to-rose-50 border border-pink-200 rounded-full px-4 py-1.5">
-              <Zap size={14} className="text-pink-600" />
-              <span className="text-sm font-semibold text-pink-700">
-                ✨ {aiLeft} AI use{aiLeft !== 1 ? 's' : ''} left
-              </span>
-            </div>
+            {/* Badges removed */}
           </div>
 
-          {/* Mobile badges + hamburger */}
+          {/* Mobile hamburger */}
           <div className="flex items-center gap-1.5 sm:gap-2 md:hidden">
-            <div className="flex items-center gap-1 bg-violet-100 rounded-full px-2 py-0.5 sm:px-2.5 sm:py-1">
-              <span className="text-[10px] sm:text-xs font-bold text-violet-700">🎯{spinsLeft}</span>
-            </div>
-            <div className="flex items-center gap-1 bg-pink-100 rounded-full px-2 py-0.5 sm:px-2.5 sm:py-1">
-              <span className="text-[10px] sm:text-xs font-bold text-pink-700">✨{aiLeft}</span>
-            </div>
+            {/* Badges removed */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-1.5 sm:p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
