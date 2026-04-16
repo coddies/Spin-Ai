@@ -6,6 +6,7 @@ import AIPanel from './components/AIPanel';
 import WinnerModal from './components/WinnerModal';
 import InfoModal from './components/InfoModal';
 import RewardedAdModal from './components/RewardedAdModal';
+import InterstitialAd from './components/InterstitialAd';
 import SEOSection from './components/SEOSection';
 import AdSlot from './components/AdSlot';
 import { useAIUsage } from './hooks/useAIUsage';
@@ -34,6 +35,16 @@ function App() {
   const [history, setHistory] = useState([]);
   const [spinCount, setSpinCount] = useState(0);
   const [showRewardModal, setShowRewardModal] = useState(false);
+  const [showInterstitialAd, setShowInterstitialAd] = useState(false);
+
+  // Timed Ad Logic: Trigger every 2 minutes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowInterstitialAd(true);
+    }, 120000); // 120,000ms = 2 minutes
+
+    return () => clearInterval(interval);
+  }, []);
 
   const {
     aiLeft, canUseAI, rewardsRemaining, canClaimReward,
@@ -395,6 +406,12 @@ function App() {
           rewardsRemaining={rewardsRemaining}
         />
       )}
+
+      {/* Interstitial Timed Ad */}
+      <InterstitialAd
+        isOpen={showInterstitialAd}
+        onClose={() => setShowInterstitialAd(false)}
+      />
     </div>
   );
 }
