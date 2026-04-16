@@ -16,9 +16,9 @@ const Header = ({ spinsLeft, aiLeft, SPIN_LIMIT, AI_LIMIT }) => {
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <div className="text-2xl sm:text-3xl animate-float">🎡</div>
             <div className="min-w-0">
-              <h1 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none sm:leading-tight">
+              <div className="text-lg sm:text-2xl font-black bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none sm:leading-tight">
                 SpinAI
-              </h1>
+              </div>
               <p className="text-[10px] text-gray-500 font-medium hidden sm:block">
                 Spin smarter with AI
               </p>

@@ -6,6 +6,7 @@ import AIPanel from './components/AIPanel';
 import WinnerModal from './components/WinnerModal';
 import InfoModal from './components/InfoModal';
 import RewardedAdModal from './components/RewardedAdModal';
+import SEOSection from './components/SEOSection';
 import AdSlot from './components/AdSlot';
 import { useAIUsage } from './hooks/useAIUsage';
 import { fireWinnerConfetti } from './utils/confetti';
@@ -126,9 +127,9 @@ function App() {
       <div className="text-center py-6 sm:py-8 px-4 w-full flex flex-col items-center overflow-x-hidden">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-2 w-full max-w-2xl break-words whitespace-normal leading-tight">
           <span className="bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
-            AI-Powered
+            Spin AI:
           </span>{' '}
-          Wheel Spinner
+          AI-Powered Wheel Spinner
         </h1>
         <h2 className="text-gray-500 text-sm sm:text-base font-normal max-w-xl mx-auto px-2 break-words">
           Type any topic — AI fills your wheel instantly
@@ -255,6 +256,9 @@ function App() {
           </div>
         </div>
       </main>
+
+      {/* SEO & FAQ Section */}
+      <SEOSection />
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-100 py-8 px-4 mt-8">
