@@ -147,10 +147,28 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
     resumeAudio();
     setIsSpinning(true);
 
-    // Random total rotation: 5-10 full spins + random offset
-    const extraSpins = (5 + Math.random() * 5) * 2 * Math.PI;
+    // Pick a TRULY random target segment to land on
+    const randomTargetSegment = Math.floor(Math.random() * segmentCount);
+    // Land in the middle of that segment, with a small random jitter within segment
+    const segmentJitter = (Math.random() * 0.6 + 0.2) * segmentAngle; // 20%-80% into segment
+    // Calculate the angle where the pointer hits the target segment center
+    // pointer is at POINTER_ANGLE (-PI/2), segment i starts at (angle + i*segmentAngle)
+    // We want: POINTER_ANGLE - finalAngle ≡ randomTargetSegment * segmentAngle + segmentJitter (mod 2π)
+    const targetFinalAngle = POINTER_ANGLE - (randomTargetSegment * segmentAngle + segmentJitter);
+
+    // Add 5-10 full spins on top of current angle, then adjust to land exactly on target
+    const fullSpins = (5 + Math.floor(Math.random() * 6)) * 2 * Math.PI;
     const startAngle = currentAngleRef.current;
-    const targetAngle = startAngle + extraSpins;
+
+    // Normalize startAngle to [0, 2π) for calculation
+    const normalizedStart = ((startAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    const normalizedTarget = ((targetFinalAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+
+    // How much extra angle to rotate from normalizedStart to reach normalizedTarget (always forward)
+    let delta = normalizedTarget - normalizedStart;
+    if (delta < 0) delta += 2 * Math.PI; // ensure we go forward
+
+    const targetAngle = startAngle + fullSpins + delta;
     const duration = 4500 + Math.random() * 500; // 4.5-5s
 
     let startTime = null;
