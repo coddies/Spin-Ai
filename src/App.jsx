@@ -33,7 +33,7 @@ function App() {
   const [showWinnerModal, setShowWinnerModal] = useState(false);
   const [infoModalOpen, setInfoModalOpen] = useState(null); // 'about' | 'privacy' | 'contact' | null
   const [history, setHistory] = useState([]);
-  const [spinCount, setSpinCount] = useState(0);
+
   const [showRewardModal, setShowRewardModal] = useState(false);
   const [showInterstitialAd, setShowInterstitialAd] = useState(false);
 
@@ -65,10 +65,8 @@ function App() {
    * Called by Wheel before spinning – gate by limits.
    * Returns true if spin is allowed, false otherwise.
    */
-  const handleSpinStart = useCallback(() => {
-    setSpinCount((c) => c + 1);
-    return true;
-  }, []);
+  // handleSpinStart — spins are unlimited, no restrictions
+  const handleSpinStart = useCallback(() => true, []);
 
   /**
    * Called by Wheel when spin animation ends and winner determined
