@@ -74,13 +74,22 @@ function App() {
     return () => clearTimeout(timer);
   }, [toastMsg]);
 
-  // Timed Ad Logic: Trigger every 2 minutes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowInterstitialAd(true);
-    }, 120000); // 120,000ms = 2 minutes
+  const [spinCount, setSpinCount] = useState(0);
+  const [adTrigger, setAdTrigger] = useState(0);
 
-    return () => clearInterval(interval);
+  // Interstitial Ad Timer: Trigger after 5 minutes (300,000ms) of active use
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInterstitialAd(true);
+    }, 300000); // 5 minutes
+
+    return () => clearTimeout(timer);
+  }, [adTrigger]);
+
+  const handleCloseInterstitial = useCallback(() => {
+    setShowInterstitialAd(false);
+    setSpinCount(0);
+    setAdTrigger((prev) => prev + 1);
   }, []);
 
   const {
@@ -118,9 +127,23 @@ function App() {
       // Add to history
       const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       setHistory((prev) => [{ name: winnerName, time: timestamp, color: idx }, ...prev].slice(0, 5));
+
+      // Increment spin count
+      setSpinCount((prev) => prev + 1);
     },
     []
   );
+
+  /**
+   * Dismiss the winner modal and trigger the ad if 5 spins occurred
+   */
+  const handleWinnerDismiss = useCallback(() => {
+    setShowWinnerModal(false);
+    setWinner(null);
+    if (spinCount >= 5) {
+      setShowInterstitialAd(true);
+    }
+  }, [spinCount]);
 
   /**
    * Handle "Remove Winner" from winner modal
@@ -130,19 +153,16 @@ function App() {
       const updated = prevItems.filter((item) => item !== winnerName);
       return updated;
     });
-    setShowWinnerModal(false);
-    setWinner(null);
     setToastMsg(`"${winnerName}" removed from wheel`);
-  }, []);
+    handleWinnerDismiss();
+  }, [handleWinnerDismiss]);
 
   /**
    * Handle "Spin Again" from winner modal
    */
-  const handleSpinAgain = () => {
-    setShowWinnerModal(false);
-    setWinner(null);
-    // User can click spin button manually; no auto-trigger needed
-  };
+  const handleSpinAgain = useCallback(() => {
+    handleWinnerDismiss();
+  }, [handleWinnerDismiss]);
 
   /**
    * AI items generated – update wheel items
@@ -434,10 +454,7 @@ function App() {
         <WinnerModal
           winner={winner}
           winnerIndex={winnerIndex}
-          onClose={() => {
-            setShowWinnerModal(false);
-            setWinner(null);
-          }}
+          onClose={handleWinnerDismiss}
           onSpinAgain={handleSpinAgain}
           onRemoveWinner={handleRemoveWinner}
         />
@@ -463,7 +480,7 @@ function App() {
       {/* Interstitial Timed Ad */}
       <InterstitialAd
         isOpen={showInterstitialAd}
-        onClose={() => setShowInterstitialAd(false)}
+        onClose={handleCloseInterstitial}
       />
 
       {/* Toast Notification */}
