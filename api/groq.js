@@ -22,11 +22,10 @@ const SYSTEM_PROMPT = `You are a wheel spinner assistant. User will give you a t
  * Fallback model chain — tries models in order until one succeeds.
  */
 const GROQ_MODELS = [
-  'llama3-8b-8192',           // Primary: specified model
-  'llama-3.1-8b-instant',     // Fallback 1
-  'gemma2-9b-it',             // Fallback 2
-  'llama-3.3-70b-versatile',  // Fallback 3
-  'mixtral-8x7b-32768',       // Fallback 4
+  'llama-3.1-8b-instant',     // Primary Active: Meta Llama 3.1 8B
+  'llama-3.3-70b-versatile',  // Fallback 1: Meta Llama 3.3 70B
+  'llama-3.2-3b-preview',     // Fallback 2: Meta Llama 3.2 3B
+  'llama-3.2-1b-preview',     // Fallback 3: Meta Llama 3.2 1B
 ];
 
 /**

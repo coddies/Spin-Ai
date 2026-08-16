@@ -3,7 +3,7 @@
 Spin Smarter — AI Fills Your Wheel Instantly! Enter any topic and AI will fill the wheel automatically.
 
 ## Features
-- **AI-Powered Generation**: Instantly fills your wheel based on any prompt using the Groq API with robust multi-model fallback chaining (llama3-8b, llama-3.1-8b, gemma2, llama-3.3, and mixtral).
+- **AI-Powered Generation**: Instantly fills your wheel based on any prompt using the Groq API with robust multi-model fallback chaining (llama-3.1-8b-instant, llama-3.3-70b-versatile, llama-3.2-3b-preview, and llama-3.2-1b-preview).
 - **LocalStorage State Persistence**: Saves and restores custom wheel items automatically in the browser (`spin-ai-items-v1`), keeping manual additions and AI results safe across reloads.
 - **Elimination Mode**: Allows users to remove winning items from the wheel directly from the Winner celebration popup to prevent duplicate picks.
 - **Ticking & Winner Sound Effects**: Premium audio feedback using the Web Audio API (synthesizer ticks on segment pass, major chords on result).
@@ -57,5 +57,5 @@ npm run dev
 ## Tech Stack
 - React + Vite
 - Tailwind CSS
-- Groq API (llama3-8b-8192 with auto-fallback)
+- Groq API (llama-3.1-8b-instant with auto-fallback)
 - Canvas Confetti
