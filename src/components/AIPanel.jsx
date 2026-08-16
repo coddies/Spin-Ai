@@ -95,7 +95,7 @@ const AIPanel = ({ onItemsGenerated, aiLeft, canUseAI, onLimitReached }) => {
           <div>
             <h2 className="font-bold text-gray-800 text-base flex items-center gap-1.5">
               ✨ AI Spin Wheel Generator
-              <span className="text-xs bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 px-2 py-0.5 rounded-full border border-violet-200 font-semibold">
+              <span className="text-xs bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 px-2 py-0.5 rounded-full border border-violet-200 font-semibold whitespace-nowrap">
                 ✨ {aiLeft} left
               </span>
             </h2>

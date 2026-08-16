@@ -312,7 +312,7 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
 
         {/* Canvas with glow */}
         <div
-          className={`rounded-full transition-all duration-300 ${
+          className={`rounded-full w-fit h-fit mx-auto overflow-hidden transition-all duration-300 ${
             isSpinning ? 'animate-pulse-glow' : ''
           }`}
           style={{
