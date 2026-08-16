@@ -4,7 +4,7 @@ import AdSlot from './AdSlot';
 
 /**
  * InterstitialAd - A recurring popup modal that displays a 300x250 ad.
- * Designed with glassmorphism to match the SpinAI aesthetic.
+ * Designed with glassmorphism to match the SpinWheel AI aesthetic.
  */
 const InterstitialAd = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -52,11 +52,11 @@ const InterstitialAd = ({ isOpen, onClose }) => {
           onClick={onClose}
           className="w-full py-3 px-6 bg-gray-900 text-white rounded-2xl font-bold text-sm hover:bg-black hover:scale-[1.02] transition-all shadow-lg active:scale-95"
         >
-          Continue to SpinAI
+          Continue to SpinWheel AI
         </button>
 
         <p className="mt-4 text-[10px] text-gray-400 italic">
-          Ads help keep SpinAI free to use.
+          Ads help keep SpinWheel AI free to use.
         </p>
       </div>
     </div>

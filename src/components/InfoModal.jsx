@@ -4,12 +4,12 @@ import { X, User, Heart, Shield, Mail } from 'lucide-react';
 const InfoModal = ({ type, onClose }) => {
   const content = {
     about: {
-      title: 'About SpinAI',
+      title: 'About SpinWheel AI',
       icon: <User className="text-violet-500" size={24} />,
       body: (
         <div className="space-y-4 text-gray-600 text-sm leading-relaxed">
           <p>
-            SpinAI was built by <strong className="text-gray-900">Muhammad Burhan</strong>, a developer passionate about making everyday decisions fun and effortless.
+            SpinWheel AI was built by <strong className="text-gray-900">Muhammad Burhan</strong>, a developer passionate about making everyday decisions fun and effortless.
           </p>
           <p>
             This tool was created to eliminate the hassle of manually adding items to a wheel spinner — just type your topic and let AI do the work.

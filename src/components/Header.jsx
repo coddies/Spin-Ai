@@ -10,6 +10,7 @@ const Header = ({ aiUsed, aiLeft }) => {
 
   return (
     <header className="w-full bg-white/80 backdrop-blur-md border-b border-white/40 shadow-sm sticky top-0 z-50">
+      <h1 className="sr-only">AI-Powered Spin Wheel Generator</h1>
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
           {/* Logo */}
@@ -17,10 +18,10 @@ const Header = ({ aiUsed, aiLeft }) => {
             <div className="text-2xl sm:text-3xl animate-float">🎡</div>
             <div className="min-w-0">
               <div className="text-lg sm:text-2xl font-black bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent leading-none sm:leading-tight">
-                SpinAI
+                SpinWheel AI
               </div>
               <p className="text-[10px] text-gray-500 font-medium hidden sm:block">
-                Spin smarter with AI
+                Spin Smarter — AI Fills Your Wheel Instantly
               </p>
             </div>
           </div>

@@ -13,7 +13,7 @@ const AIPanel = ({ onItemsGenerated, aiLeft, canUseAI, onLimitReached }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem('spinai_ai_onboarded')) {
+    if (!localStorage.getItem('spinwheelai_ai_onboarded')) {
       // Small delay so it pops in beautifully
       const t = setTimeout(() => setShowTooltip(true), 1500);
       return () => clearTimeout(t);
@@ -21,7 +21,7 @@ const AIPanel = ({ onItemsGenerated, aiLeft, canUseAI, onLimitReached }) => {
   }, []);
 
   const dismissTooltip = () => {
-    localStorage.setItem('spinai_ai_onboarded', 'true');
+    localStorage.setItem('spinwheelai_ai_onboarded', 'true');
     setShowTooltip(false);
   };
 
@@ -94,7 +94,7 @@ const AIPanel = ({ onItemsGenerated, aiLeft, canUseAI, onLimitReached }) => {
           </div>
           <div>
             <h2 className="font-bold text-gray-800 text-base flex items-center gap-1.5">
-              AI Item Generator
+              ✨ AI Spin Wheel Generator
               <span className="text-xs bg-gradient-to-r from-violet-100 to-pink-100 text-violet-700 px-2 py-0.5 rounded-full border border-violet-200 font-semibold">
                 ✨ {aiLeft} left
               </span>

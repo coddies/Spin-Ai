@@ -8,20 +8,20 @@ import { HelpCircle, Zap, ShieldCheck, ChevronDown } from 'lucide-react';
 const SEOSection = () => {
   const faqs = [
     {
-      q: "What is Spin AI?",
-      a: "Spin AI is an advanced AI-powered wheel spinner and random picker tool. It allows you to instantly generate categories or item lists using AI, saving you time and making decision-making fun and effortless."
+      q: "What is SpinWheel AI?",
+      a: "SpinWheel AI is an advanced AI-powered wheel spinner and random picker tool. It allows you to instantly generate categories or item lists using AI, saving you time and making decision-making fun and effortless."
     },
     {
       q: "How does the AI Random Picker work?",
       a: "Simply enter a topic (like 'Dinner Ideas' or 'Team Names') into the AI Panel. Our integrated AI model will generate a high-quality list of options and automatically populate the wheel for you."
     },
     {
-      q: "Is Spin AI free to use?",
-      a: "Yes! Spin AI is completely free. We provide a daily baseline of AI generations, and you can unlock even more uses by watching a short rewarded ad."
+      q: "Is SpinWheel AI free to use?",
+      a: "Yes! SpinWheel AI is completely free. We provide a daily baseline of AI generations, and you can unlock even more uses by watching a short rewarded ad."
     },
     {
-      q: "Can I use Spin AI on mobile?",
-      a: "Absolutely. Spin AI is fully responsive and optimized for all devices, including iPhones, Android phones, tablets, and desktops."
+      q: "Can I use SpinWheel AI on mobile?",
+      a: "Absolutely. SpinWheel AI is fully responsive and optimized for all devices, including iPhones, Android phones, tablets, and desktops."
     }
   ];
 
@@ -32,7 +32,7 @@ const SEOSection = () => {
       <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 border border-white/40 shadow-sm">
         <h2 className="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
           <HelpCircle className="text-violet-600" size={28} />
-          How to Use Spin AI
+          How to Use SpinWheel AI
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
@@ -52,7 +52,7 @@ const SEOSection = () => {
       {/* 2. Key Features */}
       <div>
         <h2 className="text-2xl font-black text-gray-900 mb-8 text-center uppercase tracking-tight">
-          Why Choose Spin AI?
+          Why Choose SpinWheel AI?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[

@@ -45,14 +45,16 @@ export const useGroq = () => {
         throw new Error(data?.error || `Server error: ${response.status}`);
       }
 
-      if (!Array.isArray(data.items) || data.items.length < 2) {
+      const items = Array.isArray(data) ? data : (data?.items || []);
+
+      if (items.length < 2) {
         throw new Error('Invalid response from server. Please try again.');
       }
 
       setLoading(false);
-      return data.items;
+      return items;
     } catch (err) {
-      console.error('[SpinAI] API proxy error:', err.message);
+      console.error('[SpinWheel AI] API proxy error:', err.message);
       setLoading(false);
       setError(err.message || 'Failed to generate items. Please try again.');
       return null;

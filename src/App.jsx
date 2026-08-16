@@ -23,7 +23,7 @@ const DEFAULT_ITEMS = [
 ];
 
 /**
- * Main App component – orchestrates all SpinAI functionality
+ * Main App component – orchestrates all SpinWheel AI functionality
  */
 function App() {
   const [items, setItems] = useState(DEFAULT_ITEMS);
@@ -55,9 +55,9 @@ function App() {
   // Dynamically update document title for SEO
   useEffect(() => {
     if (winner && showWinnerModal) {
-      document.title = `🎉 ${winner} - SpinAI`;
+      document.title = `🎉 ${winner} - SpinWheel AI`;
     } else {
-      document.title = "SpinAI - AI Powered Wheel Spinner | Free Online Tool";
+      document.title = "SpinWheel AI - Free AI Wheel Spinner & Random Name Picker Online";
     }
   }, [winner, showWinnerModal]);
 
@@ -110,7 +110,7 @@ function App() {
    */
   const copyToClipboard = async (text) => {
     try {
-      await navigator.clipboard.writeText(`🎡 SpinAI picked: ${text}`);
+      await navigator.clipboard.writeText(`🎡 SpinWheel AI picked: ${text}`);
     } catch (e) {
       /* ignore */
     }
@@ -134,15 +134,12 @@ function App() {
 
       {/* Hero Section */}
       <div className="text-center py-6 sm:py-8 px-4 w-full flex flex-col items-center overflow-x-hidden">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-2 w-full max-w-2xl break-words whitespace-normal leading-tight">
-          <span className="bg-gradient-to-r from-violet-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">
-            Spin AI:
-          </span>{' '}
-          AI-Powered Wheel Spinner
-        </h1>
-        <h2 className="text-gray-500 text-sm sm:text-base font-normal max-w-xl mx-auto px-2 break-words">
-          Type any topic — AI fills your wheel instantly
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-2 w-full max-w-2xl break-words whitespace-normal leading-tight">
+          Type Any Topic — AI Fills Your Spin Wheel Instantly
         </h2>
+        <p className="text-gray-500 text-sm sm:text-base font-normal max-w-xl mx-auto px-2 break-words">
+          Free online spin wheel with built-in AI. No manual typing, no signup required.
+        </p>
       </div>
 
       {/* Main 3-column layout */}
@@ -275,11 +272,16 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 w-full">
             
             {/* Left: Brand */}
-            <div className="flex-1 flex justify-start items-center gap-2">
-              <span className="text-2xl">🎡</span>
-              <span className="font-black bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">
-                SpinAI
-              </span>
+            <div className="flex-1 flex flex-col items-start gap-1">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🎡</span>
+                <span className="font-black bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">
+                  SpinWheel AI
+                </span>
+              </div>
+              <p className="text-xs text-gray-500 font-medium">
+                SpinWheel AI — The Smartest Free Spin Wheel Online
+              </p>
             </div>
             
             {/* Center: Nav Links */}
@@ -302,8 +304,9 @@ function App() {
             
             {/* Right: Signature */}
             <div className="flex-1 flex justify-end">
-              <p className="text-sm text-gray-500 font-medium whitespace-nowrap">
-                Made with <Heart size={14} className="inline text-red-500 fill-red-500 mx-0.5" /> by <strong className="text-gray-900">Muhammad Burhan</strong> | © 2024
+              <p className="text-xs text-gray-400 font-medium text-right">
+                © 2025 SpinWheel AI. Free AI Spin Wheel Generator.<br />
+                Made with <Heart size={14} className="inline text-red-500 fill-red-500 mx-0.5" /> by <strong className="text-gray-900">Muhammad Burhan</strong>
               </p>
             </div>
             
@@ -340,7 +343,7 @@ function App() {
       {/* Sticky Donate Button */}
       <div className="fixed bottom-6 right-6 z-40 group">
         <div className="absolute bottom-full right-0 mb-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Keep SpinAI free & running!
+          Keep SpinWheel AI free & running!
         </div>
         {/* Bloom glow */}
         <div
@@ -371,7 +374,7 @@ function App() {
               animation: 'btnShimmer 3s ease-in-out infinite',
             }}
           />
-          <span className="relative z-10">☕ Support SpinAI</span>
+          <span className="relative z-10">☕ Support SpinWheel AI</span>
         </a>
       </div>
 

@@ -14,16 +14,16 @@ const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
   useEffect(() => {
     // Update page title
     if (winner) {
-      document.title = `🎉 ${winner} wins! – SpinAI`;
+      document.title = `🎉 ${winner} wins! – SpinWheel AI`;
     }
     return () => {
-      document.title = 'SpinAI - Spin Smarter with AI 🎡';
+      document.title = 'SpinWheel AI - Free AI Wheel Spinner & Random Name Picker Online';
     };
   }, [winner]);
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(`🎡 SpinAI picked: ${winner}`);
+      await navigator.clipboard.writeText(`🎡 SpinWheel AI picked: ${winner}`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -32,10 +32,10 @@ const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
   };
 
   const handleShare = async () => {
-    const text = `🎡 SpinAI just picked "${winner}"! Try it at SpinAI`;
+    const text = `🎡 SpinWheel AI just picked "${winner}"! Try it at SpinWheel AI`;
     if (navigator.share) {
       try {
-        await navigator.share({ title: 'SpinAI Result', text });
+        await navigator.share({ title: 'SpinWheel AI Result', text });
       } catch {
         // User cancelled
       }

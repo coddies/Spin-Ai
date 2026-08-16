@@ -22,11 +22,11 @@ const SYSTEM_PROMPT = `You are a wheel spinner assistant. User will give you a t
  * Fallback model chain — tries models in order until one succeeds.
  */
 const GROQ_MODELS = [
-  'llama-3.1-8b-instant',     // Primary: fast, actively supported
-  'llama3-8b-8192',           // Fallback 1
-  'llama3-70b-8192',          // Fallback 2: larger, more capable
-  'gemma2-9b-it',             // Fallback 3: Google Gemma via Groq
-  'llama-3.3-70b-versatile',  // Fallback 4: latest Llama 3.3
+  'llama3-8b-8192',           // Primary: specified model
+  'llama-3.1-8b-instant',     // Fallback 1
+  'gemma2-9b-it',             // Fallback 2
+  'llama-3.3-70b-versatile',  // Fallback 3
+  'mixtral-8x7b-32768',       // Fallback 4
 ];
 
 /**
@@ -133,14 +133,14 @@ export default async function handler(req, res) {
   let lastError = null;
   for (const model of GROQ_MODELS) {
     try {
-      console.log(`[SpinAI/api] Trying model: ${model}`);
+      console.log(`[SpinWheel AI/api] Trying model: ${model}`);
       const items = await tryModel(model, prompt.trim(), apiKey);
-      console.log(`[SpinAI/api] ✅ Success with model: ${model}`);
+      console.log(`[SpinWheel AI/api] ✅ Success with model: ${model}`);
       res.writeHead(200, { ...CORS_HEADERS, 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ items }));
+      res.end(JSON.stringify(items));
       return;
     } catch (err) {
-      console.warn(`[SpinAI/api] ❌ Model ${model} failed: ${err.message}`);
+      console.warn(`[SpinWheel AI/api] ❌ Model ${model} failed: ${err.message}`);
       lastError = err;
     }
   }

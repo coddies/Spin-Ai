@@ -8,7 +8,7 @@ const getTodayKey = () => new Date().toISOString().split('T')[0];
 
 const getStoredData = () => {
   try {
-    const stored = localStorage.getItem('spinai_ai_usage');
+    const stored = localStorage.getItem('spinwheelai_ai_usage');
     if (!stored) return null;
     const parsed = JSON.parse(stored);
     // Reset if date changed
@@ -21,7 +21,7 @@ const getStoredData = () => {
 
 const saveToStorage = (data) => {
   try {
-    localStorage.setItem('spinai_ai_usage', JSON.stringify(data));
+    localStorage.setItem('spinwheelai_ai_usage', JSON.stringify(data));
   } catch {
     /* ignore storage errors or private mode */
   }
