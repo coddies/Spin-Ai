@@ -51,6 +51,79 @@ const Wheel = ({ items, onResult, isSpinning, setIsSpinning, onSpinStart }) => {
 
       ctx.clearRect(0, 0, size, size);
 
+      if (segmentCount === 0) {
+        // Draw empty state
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = '#f3f4f6';
+        ctx.fill();
+        
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        ctx.font = 'bold 16px Poppins, sans-serif';
+        ctx.fillStyle = '#9ca3af';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Wheel is empty', cx, cy);
+        return;
+      }
+
+      if (segmentCount === 1) {
+        // Draw single item wheel
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = getSegmentColor(0);
+        ctx.fill();
+
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Draw label in the center
+        ctx.save();
+        ctx.font = `bold ${Math.max(12, Math.min(16, canvasSize / 25))}px Poppins, sans-serif`;
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 4;
+        ctx.fillText(items[0], cx, cy - radius * 0.4);
+        ctx.restore();
+
+        // Outer ring border
+        const ringGrad = ctx.createLinearGradient(0, 0, size, size);
+        ringGrad.addColorStop(0, '#7c3aed');
+        ringGrad.addColorStop(0.5, '#ec4899');
+        ringGrad.addColorStop(1, '#f97316');
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = ringGrad;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Center circle
+        const centerGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 28);
+        centerGrad.addColorStop(0, '#ffffff');
+        centerGrad.addColorStop(0.5, '#f3e8ff');
+        centerGrad.addColorStop(1, '#7c3aed');
+        ctx.beginPath();
+        ctx.arc(cx, cy, 28, 0, 2 * Math.PI);
+        ctx.fillStyle = centerGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.font = `${Math.max(14, canvasSize / 28)}px sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowBlur = 0;
+        ctx.fillText('🎡', cx, cy);
+        return;
+      }
+
       // Outer glow
       const glowGrad = ctx.createRadialGradient(cx, cy, radius * 0.8, cx, cy, radius + 18);
       glowGrad.addColorStop(0, 'rgba(124,58,237,0)');

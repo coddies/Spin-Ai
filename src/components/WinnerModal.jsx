@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { X, Share2, RotateCcw, Copy } from 'lucide-react';
+import { X, Share2, RotateCcw, Copy, Trash2 } from 'lucide-react';
 import { getSegmentColor } from '../utils/colors';
 
 /**
  * WinnerModal – displayed after wheel stops spinning.
  * Shows winner name in gradient, confetti plays in background.
- * Features: Spin Again, Share Result, Copy to clipboard.
+ * Features: Spin Again, Share Result, Copy to clipboard, Remove from Wheel.
  */
-const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
+const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain, onRemoveWinner }) => {
   const [copied, setCopied] = React.useState(false);
   const color = getSegmentColor(winnerIndex ?? 0);
 
@@ -136,6 +136,16 @@ const WinnerModal = ({ winner, winnerIndex, onClose, onSpinAgain }) => {
               <span className="relative z-10">Spin Again</span>
             </button>
           </div>
+
+          {/* Remove from Wheel Button */}
+          <button
+            onClick={() => onRemoveWinner(winner)}
+            id="remove-winner-btn"
+            className="w-full py-3.5 px-6 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 rounded-2xl font-bold text-sm hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm"
+          >
+            <Trash2 size={16} />
+            <span>Remove from Wheel</span>
+          </button>
 
           <div className="flex flex-col xs:flex-row gap-2">
             {/* Share button - bloom + shimmer */}

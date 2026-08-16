@@ -37,6 +37,43 @@ function App() {
   const [showRewardModal, setShowRewardModal] = useState(false);
   const [showInterstitialAd, setShowInterstitialAd] = useState(false);
 
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [toastMsg, setToastMsg] = useState('');
+
+  // Load items from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('spin-ai-items-v1');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length >= 1) {
+          setItems(parsed);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load items from localStorage', e);
+    } finally {
+      setHasLoaded(true);
+    }
+  }, []);
+
+  // Save items to localStorage whenever they change
+  useEffect(() => {
+    if (!hasLoaded) return;
+    try {
+      localStorage.setItem('spin-ai-items-v1', JSON.stringify(items));
+    } catch (e) {
+      console.error('Failed to save items to localStorage', e);
+    }
+  }, [items, hasLoaded]);
+
+  // Toast automatic dismiss effect
+  useEffect(() => {
+    if (!toastMsg) return;
+    const timer = setTimeout(() => setToastMsg(''), 3000);
+    return () => clearTimeout(timer);
+  }, [toastMsg]);
+
   // Timed Ad Logic: Trigger every 2 minutes
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,6 +121,19 @@ function App() {
     },
     []
   );
+
+  /**
+   * Handle "Remove Winner" from winner modal
+   */
+  const handleRemoveWinner = useCallback((winnerName) => {
+    setItems((prevItems) => {
+      const updated = prevItems.filter((item) => item !== winnerName);
+      return updated;
+    });
+    setShowWinnerModal(false);
+    setWinner(null);
+    setToastMsg(`"${winnerName}" removed from wheel`);
+  }, []);
 
   /**
    * Handle "Spin Again" from winner modal
@@ -388,6 +438,7 @@ function App() {
             setWinner(null);
           }}
           onSpinAgain={handleSpinAgain}
+          onRemoveWinner={handleRemoveWinner}
         />
       )}
 
@@ -413,6 +464,13 @@ function App() {
         isOpen={showInterstitialAd}
         onClose={() => setShowInterstitialAd(false)}
       />
+
+      {/* Toast Notification */}
+      {toastMsg && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 animate-bounce-in">
+          <span>{toastMsg}</span>
+        </div>
+      )}
     </div>
   );
 }
