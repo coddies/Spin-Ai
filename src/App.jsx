@@ -196,7 +196,7 @@ function App() {
       <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-24 overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 sm:gap-8 items-start justify-center">
           {/* Left: AI Panel + Tips */}
-          <div className="flex flex-col gap-5 lg:order-1">
+          <div className="flex flex-col gap-5 order-2 lg:order-1">
             <AIPanel
               onItemsGenerated={handleAIItemsGenerated}
               aiLeft={aiLeft}
@@ -227,7 +227,7 @@ function App() {
           </div>
 
           {/* Center: Wheel */}
-          <div className="flex flex-col items-center gap-6 lg:order-2">
+          <div className="flex flex-col items-center gap-6 order-1 lg:order-2">
             <div className="w-full flex flex-col items-center">
               <Wheel
                 items={items}
@@ -282,7 +282,7 @@ function App() {
           </div>
 
           {/* Right: Manual Items, Ad, How It Works */}
-          <div className="flex flex-col gap-5 lg:order-3">
+          <div className="flex flex-col gap-5 order-3 lg:order-3">
             
             {/* Manual wheel fill */}
             <ItemsList items={items} setItems={setItems} />
@@ -339,6 +339,7 @@ function App() {
               {[
                 { label: 'About', type: 'about' },
                 { label: 'Privacy Policy', type: 'privacy' },
+                { label: 'Terms of Service', type: 'terms' },
                 { label: 'Contact', type: 'contact' },
               ].map(({ label, type }) => (
                 <button

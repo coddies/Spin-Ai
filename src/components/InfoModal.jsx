@@ -66,6 +66,71 @@ const InfoModal = ({ type, onClose }) => {
           </div>
         </div>
       )
+    },
+    terms: {
+      title: 'Terms of Service',
+      icon: <Shield className="text-violet-500" size={24} />,
+      body: (
+        <div className="space-y-4 text-gray-600 text-sm leading-relaxed pr-1">
+          <p className="text-xs text-gray-400 font-semibold">Last updated: August 16, 2026</p>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">1. Acceptance of Terms</h3>
+            <p>By using SpinWheel AI, users agree to these terms.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">2. Use of Service</h3>
+            <p>SpinWheel AI is an AI-powered wheel spinner and random decision tool. Users should not use it for unlawful or harmful activities.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">3. AI-Generated Content</h3>
+            <p>AI-generated results are provided for entertainment and convenience. Results are not guaranteed to be accurate, complete, or suitable for every purpose. Users should review results before relying on them.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">4. Free Credits and Usage Limits</h3>
+            <p>Free AI credits may be limited. Daily limits, rewards, and availability may change at any time.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">5. Advertisements</h3>
+            <p>The app may display third-party advertisements in the future. Third-party ads are subject to their own terms and policies.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">6. User Data</h3>
+            <p>Wheel items and settings may be stored locally in the user's browser (localStorage). Users can clear browser storage to remove this data.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">7. Intellectual Property</h3>
+            <p>The SpinWheel AI name, branding, and interface belong to the project owner. Users may not copy or misuse the product in unauthorized ways.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">8. Disclaimer</h3>
+            <p>The service is provided "as is". No warranty is guaranteed.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">9. Limitation of Liability</h3>
+            <p>The project owner is not responsible for any loss caused by using the tool.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">10. Changes to Terms</h3>
+            <p>Terms may be updated at any time. Continued use means acceptance of updated terms.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">11. Contact</h3>
+            <p>For questions regarding these terms, please contact:<br />
+            <a href="mailto:support@spinwheelai.com" className="text-violet-600 hover:underline">support@spinwheelai.com</a></p>
+          </div>
+        </div>
+      )
     }
   };
 
@@ -93,7 +158,7 @@ const InfoModal = ({ type, onClose }) => {
           </button>
         </div>
         
-        <div className="p-6">
+        <div className="p-6 max-h-[65vh] overflow-y-auto">
           {body}
         </div>
         
