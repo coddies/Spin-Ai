@@ -19,7 +19,7 @@ import { useState, useCallback } from 'react';
  */
 
 // ↓ Change this to absolute URL if frontend moves to Hostinger
-const API_ENDPOINT = '/api/groq';
+const API_ENDPOINT = '/api/groq.php';
 
 /**
  * Hook to generate wheel items via the secure server-side Groq proxy.
