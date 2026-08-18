@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from 'fs';
 
-const domain = "https://spin-ai-brown.vercel.app";
+const domain = "https://spinwheelai.online";
 const routes = ["/"]; // Add more routes if the app becomes multi-page
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

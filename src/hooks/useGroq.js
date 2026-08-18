@@ -12,7 +12,7 @@ import { useState, useCallback } from 'react';
  *
  * If you move the frontend to Hostinger (static hosting), change
  * API_ENDPOINT to the absolute Vercel URL:
- *   const API_ENDPOINT = 'https://spin-ai-brown.vercel.app/api/groq';
+ *   const API_ENDPOINT = 'https://spinwheelai.online/api/groq';
  *
  * The /api/groq function already sends CORS headers, so cross-domain
  * requests from Hostinger will work without any backend changes.

@@ -11,7 +11,7 @@
  * CORS headers are included so this endpoint also works when the
  * frontend is hosted on a different domain (e.g. Hostinger).
  * If you move the frontend to Hostinger, update useGroq.js to use
- * the absolute URL: https://spin-ai-brown.vercel.app/api/groq
+ * the absolute URL: https://spinwheelai.online/api/groq
  */
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
