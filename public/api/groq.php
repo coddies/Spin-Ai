@@ -73,10 +73,12 @@ if (empty($prompt)) {
 $systemPrompt = 'You are a wheel spinner assistant. User will give you a topic or description. Return ONLY a valid JSON array of 4 to 10 short items (maximum 3 words each). No explanation, no markdown, no extra text. Just the raw JSON array. Example: ["Item 1", "Item 2", "Item 3"]';
 
 $models = [
-    'llama-3.1-8b-instant',
     'llama-3.3-70b-versatile',
-    'llama-3.2-3b-preview',
-    'llama-3.2-1b-preview'
+    'llama-3.1-8b-instant', 
+    'llama3-8b-8192',
+    'llama3-70b-8192',
+    'gemma2-9b-it',
+    'mixtral-8x7b-32768'
 ];
 
 $lastError = 'Unknown error';
@@ -133,4 +135,4 @@ foreach ($models as $model) {
 
 http_response_code(502);
 header('Content-Type: application/json');
-echo json_encode(["error" => "AI failed on all models. Last error: " . $lastError]);
+echo json_encode(["error" => "✨ AI is temporarily unavailable. Please try again in a moment!"]);

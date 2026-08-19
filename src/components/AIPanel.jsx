@@ -204,7 +204,7 @@ const AIPanel = ({ onItemsGenerated, aiLeft, canUseAI, onLimitReached }) => {
         {error && (
           <div className="mt-3 flex items-start gap-2 text-sm text-rose-600 font-medium bg-rose-50 border border-rose-200 rounded-xl px-3 py-2 animate-fade-in">
             <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
-            <span>{error}</span>
+            <span>✨ AI is temporarily unavailable. Please try again in a moment!</span>
           </div>
         )}
 
