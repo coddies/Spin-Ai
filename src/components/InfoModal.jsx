@@ -30,16 +30,40 @@ const InfoModal = ({ type, onClose }) => {
       title: 'Privacy Policy',
       icon: <Shield className="text-pink-500" size={24} />,
       body: (
-        <ul className="space-y-3 text-gray-600 text-sm leading-relaxed list-disc pl-4 marker:text-gray-300">
-          <li>We do not collect or store any personal information.</li>
-          <li>Daily spin limits are stored locally in your browser (localStorage) and never sent to our servers.</li>
-          <li>We use Google AdSense which may use cookies for personalized ads. See Google Privacy Policy for details.</li>
-          <li>We use Groq API for AI generation — your prompts are sent to Groq servers for processing only.</li>
-          <li>We do not sell any data to third parties.</li>
-          <li className="pt-2 list-none -ml-4 font-medium text-gray-900">
-            For questions contact: <a href="mailto:youremail@gmail.com" className="text-violet-600 hover:underline">youremail@gmail.com</a>
-          </li>
-        </ul>
+        <div className="space-y-4 text-gray-600 text-sm leading-relaxed pr-1">
+          <p className="text-xs text-gray-400 font-semibold">Last updated: August 2026</p>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">1. Information We Collect</h3>
+            <p>We do not collect or store any personal information. No account or signup required.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">2. Local Storage</h3>
+            <p>We store your daily AI usage count (max 10 per day) locally in your browser only. This data never leaves your device.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">3. Google AdSense</h3>
+            <p>We use Google AdSense to display ads. Google may use cookies for personalized ads. See Google Privacy Policy for details:<br />
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-violet-600 hover:underline">https://policies.google.com/privacy</a></p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">4. Groq API</h3>
+            <p>When you use AI generation, your text prompt is sent to Groq API servers for processing only. We do not store prompts.</p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">5. Contact</h3>
+            <p>Email: <a href="mailto:spinwheelai@spinwheelai.online" className="text-violet-600 hover:underline">spinwheelai@spinwheelai.online</a></p>
+          </div>
+          
+          <div>
+            <h3 className="font-bold text-gray-900 mb-1">6. Changes</h3>
+            <p>We may update this policy anytime. Continued use means you accept changes.</p>
+          </div>
+        </div>
       )
     },
     contact: {
@@ -49,8 +73,8 @@ const InfoModal = ({ type, onClose }) => {
         <div className="flex flex-col gap-4 text-gray-600 text-sm">
           <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 flex flex-col gap-1 items-center text-center">
             <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Email</span>
-            <a href="mailto:youremail@gmail.com" className="text-base font-medium text-gray-900 hover:text-orange-600 transition-colors">
-              youremail@gmail.com
+            <a href="mailto:spinwheelai@spinwheelai.online" className="text-base font-medium text-gray-900 hover:text-orange-600 transition-colors">
+              spinwheelai@spinwheelai.online
             </a>
             <span className="text-xs text-orange-500 mt-1">Response time: within 24 hours</span>
           </div>
@@ -127,7 +151,7 @@ const InfoModal = ({ type, onClose }) => {
           <div>
             <h3 className="font-bold text-gray-900 mb-1">11. Contact</h3>
             <p>For questions regarding these terms, please contact:<br />
-            <a href="mailto:support@spinwheelai.com" className="text-violet-600 hover:underline">support@spinwheelai.com</a></p>
+            <a href="mailto:spinwheelai@spinwheelai.online" className="text-violet-600 hover:underline">spinwheelai@spinwheelai.online</a></p>
           </div>
         </div>
       )
