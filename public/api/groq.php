@@ -73,6 +73,10 @@ if (empty($prompt)) {
 $systemPrompt = 'You are a wheel spinner assistant. User will give you a topic or description. Return ONLY a valid JSON array of 4 to 10 short items (maximum 3 words each). No explanation, no markdown, no extra text. Just the raw JSON array. Example: ["Item 1", "Item 2", "Item 3"]';
 
 $models = [
+    'openai/gpt-oss-20b',
+    'qwen/qwen3.6-27b',
+    'openai/gpt-oss-120b',
+    'allam-2-7b',
     'llama-3.3-70b-versatile',
     'llama-3.1-8b-instant', 
     'llama3-8b-8192',
