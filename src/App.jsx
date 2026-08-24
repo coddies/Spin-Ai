@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './components/Header';
 import Wheel from './components/Wheel';
 import ItemsList from './components/ItemsList';
@@ -355,28 +356,41 @@ function App() {
             </div>
             
             {/* Center: Nav Links */}
-            <nav className="flex-1 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+            <nav className="flex-1 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-8">
               {[
-                { label: 'About', type: 'about' },
-                { label: 'Privacy Policy', type: 'privacy' },
-                { label: 'Terms of Service', type: 'terms' },
-                { label: 'Contact', type: 'contact' },
-              ].map(({ label, type }) => (
-                <button
-                  key={label}
-                  onClick={() => setInfoModalOpen(type)}
-                  className="relative text-sm text-gray-500 font-bold hover:text-gray-900 transition-colors bg-transparent border-none cursor-pointer group pb-1"
-                >
-                  {label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
-                </button>
+                { label: 'About', type: 'about', modal: true },
+                { label: 'Blog', href: '/blog', modal: false },
+                { label: 'FAQ', href: '/faq', modal: false },
+                { label: 'Privacy Policy', href: '/privacy-policy', modal: false },
+                { label: 'Terms of Service', href: '/terms-of-service', modal: false },
+                { label: 'Contact', href: '/contact', modal: false },
+              ].map(({ label, type, modal, href }) => (
+                modal ? (
+                  <button
+                    key={label}
+                    onClick={() => setInfoModalOpen(type)}
+                    className="relative text-sm text-gray-500 font-bold hover:text-gray-900 transition-colors bg-transparent border-none cursor-pointer group pb-1"
+                  >
+                    {label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
+                  </button>
+                ) : (
+                  <Link
+                    key={label}
+                    to={href}
+                    className="relative text-sm text-gray-500 font-bold hover:text-gray-900 transition-colors group pb-1"
+                  >
+                    {label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-pink-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
+                  </Link>
+                )
               ))}
             </nav>
             
             {/* Right: Signature */}
             <div className="flex-1 flex justify-end">
               <p className="text-xs text-gray-400 font-medium text-right">
-                © 2025 SpinWheel AI. Free AI Spin Wheel Generator.<br />
+                © 2026 SpinWheel AI. Free AI Spin Wheel Generator.<br />
                 Made with <Heart size={14} className="inline text-red-500 fill-red-500 mx-0.5" /> by <strong className="text-gray-900">Muhammad Burhan</strong>
               </p>
             </div>
